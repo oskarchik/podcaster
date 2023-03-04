@@ -1,9 +1,5 @@
 import './App.css';
 
 export const App = () => {
-	return (
-		<div className='app'>
-			<p>Hello sdfsdfsdf</p>
-		</div>
-	);
+	return <div className='app'>App</div>;
 };
