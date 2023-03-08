@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { millisToDuration } from '../../utils/millisToDuration';
 import { StyledTable } from './Table.styled';
+import { millisToDuration } from '../../utils/millisToDuration';
 
 export const Table = ({ podcastId, episodes }) => {
 	return (

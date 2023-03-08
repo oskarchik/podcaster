@@ -1,4 +1,3 @@
-// import { Link } from 'react-router-dom';
 import { StyledTile } from './Tile.styled';
 
 export const Tile = ({ podcast }) => {

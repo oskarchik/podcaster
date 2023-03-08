@@ -1,6 +1,5 @@
 import React from 'react';
 import { Tile } from '../Tile/Tile';
-// import { Link } from 'react-router-dom';
 
 import { StyledGrid } from './Grid.styled';
 
