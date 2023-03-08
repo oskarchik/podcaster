@@ -1,7 +1,7 @@
-import Spinner from '../Spinner/Spinner';
+import { NavLink } from 'react-router-dom';
+import { Spinner } from '../';
 import { StyledHeader } from './Header.styled';
 import { useLoading } from '../../hooks/useLoading';
-import { NavLink } from 'react-router-dom';
 
 export const Header = () => {
 	const { isLoading } = useLoading();

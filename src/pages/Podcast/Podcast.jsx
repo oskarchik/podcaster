@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router';
+
+import { Aside, Table } from '../../components';
 import { StyledPodcast } from './Podcast.styled';
 
 import { useLoading } from '../../hooks/useLoading';
-import { Aside } from '../../components/Aside/Aside';
-import { Table } from '../../components/Table/Table';
 
 async function getEpisodes(podcastId) {
 	try {
