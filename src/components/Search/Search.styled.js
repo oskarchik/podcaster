@@ -9,17 +9,18 @@ export const StyledSearch = styled.div`
 	.search-count {
 		padding: 1px;
 		border-radius: 8px;
-		background-color: #267cbc;
-		color: #fff;
+		background-color: var(--accent);
+		color: var(--light-text);
+		font-weight: var(--bold);
 	}
 	.search-input {
 		width: 400px;
 		height: 2rem;
-		border: 2px solid #dcdcdc;
+		border: 2px solid var(--borders);
 		border-radius: 4px;
 	}
 	.search-input::placeholder {
 		padding: 0.75rem;
-		color: #c6c6c6;
+		color: var(--placeholders);
 	}
 `;

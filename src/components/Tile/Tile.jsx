@@ -17,7 +17,7 @@ export const Tile = ({ podcast }) => {
 			</div>
 			<div className='info-container'>
 				<p className='name'>
-					<b>{podcast['im:name']?.label}</b>
+					<b>{podcast['im:name']?.label?.toUpperCase()}</b>
 				</p>
 				<small>Author: {podcast['im:artist']?.label}</small>
 			</div>
