@@ -1,4 +1,4 @@
-import { StyledSearch } from './SearchStyled';
+import { StyledSearch } from './Search.styled';
 
 export const Search = ({ count, query, setQuery }) => {
 	function handleChange(e) {
