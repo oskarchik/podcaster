@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     --placeholders: #c6c6c6;
     --borders: #dcdcdc;
     --page-background: white;
+    --lightgrey: #f6f6f6;
 
 
     --font:  'Roboto', sans-serif;
