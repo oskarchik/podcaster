@@ -11,4 +11,8 @@ export const StyledHeader = styled.header`
 	color: var(--accent);
 	font-size: 1.5rem;
 	font-weight: var(--bold);
+	.logo {
+		text-decoration: none;
+		color: var(--accent);
+	}
 `;
