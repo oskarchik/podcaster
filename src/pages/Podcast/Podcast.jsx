@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router';
+import { useParams } from 'react-router';
 
-import { Aside, Table } from '../../components';
+import { Table } from '../../components';
 import { StyledPodcast } from './Podcast.styled';
 
 import { useLoading } from '../../hooks/useLoading';
@@ -23,15 +23,10 @@ async function getEpisodes(podcastId) {
 
 export const Podcast = () => {
 	const { podcastId } = useParams();
-	const { state } = useLocation();
-
 	const { setIsLoading } = useLoading();
-
-	const [podcast, setPodcast] = useState();
 	const [episodes, setEpisodes] = useState();
 
 	useEffect(() => {
-		setPodcast(state);
 		(async () => {
 			setIsLoading(true);
 			setEpisodes(await getEpisodes(podcastId));
@@ -41,7 +36,6 @@ export const Podcast = () => {
 
 	return (
 		<StyledPodcast className='podcast'>
-			<Aside podcast={podcast} />
 			<div className='main'>
 				{episodes && (
 					<>
