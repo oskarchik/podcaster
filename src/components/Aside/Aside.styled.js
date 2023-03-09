@@ -4,7 +4,6 @@ export const StyledAside = styled.aside`
 	display: flex;
 	flex-direction: column;
 	width: 300px;
-
 	padding: 0 0.5rem;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	.container {
