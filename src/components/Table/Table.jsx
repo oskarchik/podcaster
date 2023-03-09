@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { StyledTable } from './Table.styled';
 import { millisToDuration } from '../../utils/millisToDuration';
 
 export const Table = ({ podcastId, episodes }) => {
+	const { state } = useLocation();
+
 	return (
 		<StyledTable className='table'>
 			<thead className='table-head'>
@@ -20,7 +22,7 @@ export const Table = ({ podcastId, episodes }) => {
 								<Link
 									to={`/podcast/${podcastId}/episode/${episode.trackId}`}
 									key={episode.episodeGuid}
-									state={episode}
+									state={{ podcast: state?.podcast, episode }}
 									className='link'
 								>
 									{episode.trackName}

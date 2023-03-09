@@ -4,7 +4,7 @@ export const Tile = ({ podcast }) => {
 	return (
 		<StyledTile
 			to={`/podcast/${podcast.id?.attributes['im:id']}`}
-			state={podcast}
+			state={{ podcast }}
 			key={podcast.id?.label}
 		>
 			<div className='cover-container'>
