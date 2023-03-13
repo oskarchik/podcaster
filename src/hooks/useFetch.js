@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLoading } from './useLoading';
+import { db } from '../utils/localdb';
 
 export const useFetch = ({ url }) => {
 	const [data, setData] = useState();
@@ -7,19 +8,39 @@ export const useFetch = ({ url }) => {
 
 	useEffect(() => {
 		setIsLoading(true);
-		const fetchData = async () => {
-			try {
-				const response = await fetch(url);
-				const items = await response.json();
 
-				setData(items.feed?.entry);
-				setIsLoading(false);
+		const getPodcasts = async () => {
+			try {
+				const allPodcasts = await db.podcasts
+					.where('id')
+					.belowOrEqual(Date.now() - 24 * 60 * 60 * 1000)
+					.toArray();
+				if (allPodcasts.length > 0) {
+					setData(allPodcasts[0].data);
+					setIsLoading(false);
+				} else {
+					const fetchData = async () => {
+						try {
+							const response = await fetch(url);
+							const items = await response.json();
+
+							await db.podcasts.put({ id: 1, data: items.feed.entry, timestamp: Date.now() });
+							setData(items.feed?.entry);
+
+							setIsLoading(false);
+						} catch (error) {
+							console.error(error.stack);
+						}
+					};
+					fetchData();
+				}
 			} catch (error) {
-				console.error(error.stack);
+				console.log(error);
 			}
 		};
 
-		fetchData();
+		getPodcasts();
 	}, []);
+
 	return { data, setData };
 };
