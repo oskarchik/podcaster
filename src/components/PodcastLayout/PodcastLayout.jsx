@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 export const PodcastLayout = () => {
 	const { state } = useLocation();
-	console.log('🚀 ~ file: PodcastLayout.jsx:9 ~ PodcastLayout ~ state:', state);
+
 	return (
 		<StyledPodcastLayout>
 			<Aside podcast={state.podcast} className='aside' />
