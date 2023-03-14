@@ -4,8 +4,8 @@ export const GlobalStyle = createGlobalStyle`
 
 :root {
     --accent: #267cbc;
-    --text: black;
-    --light-text: white;
+    --black: black;
+    --white: white;
     --placeholders: #c6c6c6;
     --borders: #dcdcdc;
     --page-background: white;
@@ -48,15 +48,18 @@ dl,
 dd {
 	margin: 0;
 }
+*{
+    font-family: var(--font)
+}
 
 /* Set core body defaults */
-Set core body defaults body {
+body {
 	min-height: 100vh;
 	scroll-behavior: smooth;
 	text-rendering: optimizeSpeed;
-	line-height: 1.5;
+	line-height: 1.2;
     font-family: var(--font);
-    color: var(--text)
+    color: var(--black)
 }
 
 /* Remove list styles on ul, ol elements with a class attribute */
