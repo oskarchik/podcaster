@@ -6,16 +6,26 @@ import { StyledPodcast } from './Podcast.styled';
 
 import { useLoading } from '../../hooks/useLoading';
 
+import { db } from '../../utils/localdb';
+
 async function getEpisodes(podcastId) {
 	try {
-		const response = await fetch(
-			`https://api.allorigins.win/get?url=${encodeURIComponent(`https://
-			itunes.apple.com/lookup?id=${podcastId}&entity=podcastEpisode&limit=10`)}`
-		);
-		const data = await response.json();
-		const parsedData = await JSON.parse(data.contents);
+		const storedPodcast = await db.podcastId.where('id').equals(podcastId).toArray();
 
-		return parsedData;
+		if (Date.now() - 24 * 90 * 90 * 1000 < storedPodcast[0]?.timestamp) {
+			return { resultCount: storedPodcast[0]?.length, results: storedPodcast[0]?.data };
+		} else {
+			const response = await fetch(
+				`https://api.allorigins.win/get?url=${encodeURIComponent(`https://
+				itunes.apple.com/lookup?id=${podcastId}&entity=podcastEpisode`)}`
+			);
+			const data = await response.json();
+			const parsedData = await JSON.parse(data.contents);
+
+			await db.podcastId.put({ id: podcastId, data: parsedData.results, timestamp: Date.now() });
+
+			return parsedData;
+		}
 	} catch (error) {
 		console.log(error);
 	}
