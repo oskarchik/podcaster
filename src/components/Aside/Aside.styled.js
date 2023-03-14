@@ -14,6 +14,10 @@ export const StyledAside = styled.aside`
 			margin: 0;
 		}
 	}
+	.link {
+		text-decoration: none;
+		color: var(--black);
+	}
 	.image {
 		margin: 0 auto;
 		border-radius: 0.25rem;
