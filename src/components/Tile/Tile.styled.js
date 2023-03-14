@@ -11,7 +11,7 @@ export const StyledTile = styled(Link)`
 	min-height: 8rem;
 	padding: 0 0.25rem 0.5rem;
 	border-radius: 0.25rem;
-	color: var(--text);
+	color: var(--black);
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	text-decoration: none;
 

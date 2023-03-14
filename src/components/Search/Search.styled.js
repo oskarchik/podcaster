@@ -10,7 +10,7 @@ export const StyledSearch = styled.div`
 		padding: 1px;
 		border-radius: 8px;
 		background-color: var(--accent);
-		color: var(--light-text);
+		color: var(--white);
 		font-weight: var(--bold);
 	}
 	.search-input {
