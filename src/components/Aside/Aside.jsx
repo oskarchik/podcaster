@@ -3,7 +3,6 @@ import { StyledAside } from './Aside.styled';
 
 export const Aside = ({ podcast }) => {
 	const { state } = useLocation();
-	// console.log('🚀 ~ file: Aside.jsx:6 ~ Aside ~ state:', state);
 	return (
 		<StyledAside>
 			{podcast && (
