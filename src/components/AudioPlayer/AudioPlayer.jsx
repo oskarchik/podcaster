@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Controls } from '../Controls/Controls';
+import { useLoading } from '../../hooks/useLoading';
 
 export const AudioPlayer = ({ state }) => {
 	const audioRef = useRef();
@@ -8,6 +9,7 @@ export const AudioPlayer = ({ state }) => {
 	const [isMuted, setIsMuted] = useState(false);
 	const [clickedTime, setClickedTime] = useState();
 	const [isPlaying, setIsPlaying] = useState(false);
+	const { setIsLoading } = useLoading();
 
 	const currentPercentage = (currentTime / duration) * 100;
 
@@ -40,6 +42,13 @@ export const AudioPlayer = ({ state }) => {
 			audioRef.current?.removeEventListener('timeupdate', setAudioTime);
 		};
 	}, []);
+
+	useEffect(() => {
+		setIsLoading(true);
+		if (audioRef.current.duration) {
+			return setIsLoading(false);
+		}
+	}, [audioRef.current?.duration]);
 
 	return (
 		<>
