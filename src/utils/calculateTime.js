@@ -9,5 +9,9 @@ export const calculateTime = (secs) => {
 	}
 
 	const returnedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+
+	if (isNaN(hours) || isNaN(returnedMinutes)) {
+		return '0:00';
+	}
 	return `${hours}:${returnedMinutes}`;
 };
