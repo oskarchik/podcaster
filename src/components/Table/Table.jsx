@@ -15,7 +15,7 @@ export const Table = ({ podcastId, episodes }) => {
 				</tr>
 			</thead>
 			<tbody className='table-body'>
-				{episodes.results?.slice(1).map((episode) => {
+				{episodes.map((episode) => {
 					return (
 						<tr key={episode.episodeGuid}>
 							<td className='cell'>
