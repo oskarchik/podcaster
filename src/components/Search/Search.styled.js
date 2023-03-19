@@ -9,8 +9,8 @@ export const StyledSearch = styled.div`
 	.search-count {
 		padding: 1px;
 		border-radius: 8px;
-		background-color: var(--accent);
 		color: var(--white);
+		background-color: var(--accent);
 		font-weight: var(--bold);
 	}
 	.search-input {
