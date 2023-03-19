@@ -15,6 +15,7 @@ export const StyledAside = styled.aside`
 		}
 	}
 	.link {
+
 		color: var(--black);
 		text-decoration: none;
 	}
@@ -25,7 +26,7 @@ export const StyledAside = styled.aside`
 	.container-image {
 		width: 75%;
 	}
-
+  
 	.container-title {
 		width: 80%;
 		padding: 0 0.75rem;

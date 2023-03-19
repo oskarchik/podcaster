@@ -4,6 +4,7 @@ import { StyledAside } from './Aside.styled';
 
 export const Aside = ({ podcast }) => {
 	const { state } = useLocation();
+
 	return (
 		<StyledAside>
 			{podcast && (

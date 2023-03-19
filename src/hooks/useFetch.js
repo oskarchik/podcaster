@@ -8,6 +8,7 @@ export const useFetch = ({ id, collection, url }) => {
 	useEffect(() => {
 		setIsLoading(true);
 
+
 		const getResources = async () => {
 			try {
 				const resources = await collection.where('id').equals(id).toArray();
@@ -42,7 +43,9 @@ export const useFetch = ({ id, collection, url }) => {
 				console.log(error);
 			}
 		};
+
 		getResources();
+
 	}, []);
 
 	return { data, setData };

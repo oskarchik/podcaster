@@ -13,3 +13,4 @@ export const millisToDuration = (millis) => {
 
 	return formattedTime;
 };
+

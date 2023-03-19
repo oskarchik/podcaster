@@ -7,6 +7,7 @@ import { GlobalStyle } from './styles/GlobalStyles';
 
 import { LoadingProvider } from './context/LoadingContext';
 
+
 export const App = () => {
 	return (
 		<>
