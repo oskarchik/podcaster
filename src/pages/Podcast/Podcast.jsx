@@ -1,11 +1,11 @@
 import { useParams } from 'react-router';
 
 import { Table } from '../../components';
+
 import { StyledPodcast } from './Podcast.styled';
 
-import { db } from '../../utils/localdb';
-
 import { useFetch } from '../../hooks/useFetch';
+import { db } from '../../utils/localdb';
 
 export const Podcast = () => {
 	const { podcastId } = useParams();

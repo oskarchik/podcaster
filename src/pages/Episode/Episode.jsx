@@ -1,5 +1,7 @@
 import { useLocation } from 'react-router';
-import { AudioPlayer } from '../../components/AudioPlayer/AudioPlayer';
+
+import { AudioPlayer } from '../../components';
+
 import { StyledEpisode } from './Episode.styled';
 
 export const Episode = () => {

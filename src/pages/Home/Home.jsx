@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react';
 
 import { Search, Grid } from '../../components';
-import { useFetch } from '../../hooks/useFetch';
-import { db } from '../../utils/localdb';
 
 import { StyledHome } from './Home.styled';
+
+import { useFetch } from '../../hooks/useFetch';
+import { db } from '../../utils/localdb';
 
 export const Home = () => {
 	const { data } = useFetch({

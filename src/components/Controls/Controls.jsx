@@ -1,7 +1,10 @@
-import { StyledControls } from './Controlos.styled';
-import { PlayIcon, PauseIcon, VolumeIcon, MuteIcon } from '../../components/Icons/Icons';
-import { calculateTime } from '../../utils/calculateTime';
 import { useRef } from 'react';
+
+import { PlayIcon, PauseIcon, VolumeIcon, MuteIcon } from '../../components/Icons/Icons';
+
+import { StyledControls } from './Controls.styled';
+
+import { calculateTime } from '../../utils/calculateTime';
 
 export const Controls = ({
 	audioRef,
