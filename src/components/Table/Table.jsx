@@ -1,5 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
+
 import { StyledTable } from './Table.styled';
+
 import { millisToDuration } from '../../utils/millisToDuration';
 
 export const Table = ({ podcastId, episodes }) => {
@@ -15,9 +17,9 @@ export const Table = ({ podcastId, episodes }) => {
 				</tr>
 			</thead>
 			<tbody className='table-body'>
-				{episodes.results?.slice(1).map((episode) => {
+				{episodes.map((episode) => {
 					return (
-						<tr key={episode.episodeGuid}>
+						<tr key={episode.episodeGuid} className='body-row'>
 							<td className='cell'>
 								<Link
 									to={`/podcast/${podcastId}/episode/${episode.trackId}`}

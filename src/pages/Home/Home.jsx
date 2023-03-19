@@ -1,12 +1,16 @@
 import { useMemo, useState } from 'react';
 
 import { Search, Grid } from '../../components';
-import { useFetch } from '../../hooks/useFetch';
 
 import { StyledHome } from './Home.styled';
 
+import { useFetch } from '../../hooks/useFetch';
+import { db } from '../../utils/localdb';
+
 export const Home = () => {
 	const { data } = useFetch({
+		id: 1,
+		collection: db.podcasts,
 		url: 'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json',
 	});
 

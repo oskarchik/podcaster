@@ -1,4 +1,4 @@
-export function millisToDuration(millis) {
+export const millisToDuration = (millis) => {
 	let seconds = millis / 1000;
 	const hours = parseInt(seconds / 3600);
 	seconds = seconds % 3600;
@@ -12,4 +12,5 @@ export function millisToDuration(millis) {
 	].join(':');
 
 	return formattedTime;
-}
+};
+

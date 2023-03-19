@@ -1,58 +1,33 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import { Table } from '../../components';
+
 import { StyledPodcast } from './Podcast.styled';
 
-import { useLoading } from '../../hooks/useLoading';
-
+import { useFetch } from '../../hooks/useFetch';
 import { db } from '../../utils/localdb';
-
-async function getEpisodes(podcastId) {
-	try {
-		const storedPodcast = await db.podcastId.where('id').equals(podcastId).toArray();
-
-		if (Date.now() - 24 * 90 * 90 * 1000 < storedPodcast[0]?.timestamp) {
-			return { resultCount: storedPodcast[0]?.length, results: storedPodcast[0]?.data };
-		} else {
-			const response = await fetch(
-				`https://api.allorigins.win/get?url=${encodeURIComponent(`https://
-				itunes.apple.com/lookup?id=${podcastId}&entity=podcastEpisode`)}`
-			);
-			const data = await response.json();
-			const parsedData = await JSON.parse(data.contents);
-
-			await db.podcastId.put({ id: podcastId, data: parsedData.results, timestamp: Date.now() });
-
-			return parsedData;
-		}
-	} catch (error) {
-		console.log(error);
-	}
-}
 
 export const Podcast = () => {
 	const { podcastId } = useParams();
-	const { setIsLoading } = useLoading();
-	const [episodes, setEpisodes] = useState();
+	const url = `https://api.allorigins.win/get?url=${encodeURIComponent(
+		`https://itunes.apple.com/lookup?id=${podcastId}&entity=podcastEpisode`
+	)}`;
 
-	useEffect(() => {
-		(async () => {
-			setIsLoading(true);
-			setEpisodes(await getEpisodes(podcastId));
-			setIsLoading(false);
-		})();
-	}, []);
+	const { data } = useFetch({
+		id: podcastId,
+		collection: db.podcastId,
+		url,
+	});
 
 	return (
 		<StyledPodcast className='podcast'>
 			<div className='main'>
-				{episodes && (
+				{data && (
 					<>
 						<div className='title'>
-							<p>Episodes:{episodes.resultCount}</p>
+							<p>Episodes:{data.length}</p>
 						</div>
-						<Table podcastId={podcastId} episodes={episodes} />
+						<Table podcastId={podcastId} episodes={data} />
 					</>
 				)}
 			</div>

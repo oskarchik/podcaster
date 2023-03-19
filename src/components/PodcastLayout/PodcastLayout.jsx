@@ -1,7 +1,8 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+
 import { Aside } from '../Aside/Aside';
+
 import { StyledPodcastLayout } from './PodcastLayout.styled';
-import { useLocation } from 'react-router-dom';
 
 export const PodcastLayout = () => {
 	const { state } = useLocation();

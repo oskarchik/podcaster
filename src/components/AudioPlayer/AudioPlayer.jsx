@@ -1,16 +1,23 @@
-import { useEffect, useState, useRef } from 'react';
-import { PlayIcon, PauseIcon, VolumeIcon, MuteIcon } from '../../components/Icons/Icons';
-import { StyledAudioPlayer } from './AudioPlayer.styled';
+import { useEffect, useRef, useState } from 'react';
+
+import { Controls } from '../../components';
+
+import { useLoading } from '../../hooks/useLoading';
 
 export const AudioPlayer = ({ state }) => {
-	const [isPlaying, setIsPlaying] = useState(false);
 	const audioRef = useRef();
 	const [duration, setDuration] = useState();
 	const [currentTime, setCurrentTime] = useState();
 	const [isMuted, setIsMuted] = useState(false);
-	const currentPercentage = (currentTime / duration) * 100;
 	const [clickedTime, setClickedTime] = useState();
+	const [isPlaying, setIsPlaying] = useState(false);
+	const { setIsLoading } = useLoading();
 
+	const currentPercentage = (currentTime / duration) * 100;
+
+	const handleMute = () => {
+		setIsMuted(!isMuted);
+	};
 	const handlePlayPause = () => {
 		if (isPlaying) {
 			audioRef.current?.pause();
@@ -20,23 +27,12 @@ export const AudioPlayer = ({ state }) => {
 		setIsPlaying(!isPlaying);
 	};
 
-	const handleMute = () => {
-		setIsMuted(!isMuted);
-	};
-
 	const onLoadedMetadata = () => {
 		setDuration(audioRef.current?.duration);
 		setCurrentTime(audioRef.current?.currentTime);
 	};
 	const setAudioTime = () => setCurrentTime(audioRef.current?.currentTime);
 
-	const calculateTime = (secs) => {
-		const minutes = Math.floor(secs / 60);
-		const returnedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-
-		const hours = Math.floor(minutes / 60);
-		return `${hours}:${returnedMinutes}`;
-	};
 	useEffect(() => {
 		audioRef.current?.addEventListener('timeupdate', setAudioTime);
 
@@ -47,9 +43,17 @@ export const AudioPlayer = ({ state }) => {
 		return () => {
 			audioRef.current?.removeEventListener('timeupdate', setAudioTime);
 		};
-	});
+	}, []);
+
+	useEffect(() => {
+		setIsLoading(true);
+		if (audioRef.current.duration) {
+			return setIsLoading(false);
+		}
+	}, [audioRef.current?.duration]);
+
 	return (
-		<StyledAudioPlayer currentPercentage={currentPercentage}>
+		<>
 			<audio
 				ref={audioRef}
 				className='audio'
@@ -59,17 +63,18 @@ export const AudioPlayer = ({ state }) => {
 				src={state?.episode?.episodeUrl}
 				muted={isMuted}
 			></audio>
-
-			<div className='panel'>
-				<button onClick={handlePlayPause} className='btn'>
-					{isPlaying ? <PauseIcon /> : <PlayIcon />}
-				</button>
-				<div className='progress'></div>
-				<div>{audioRef.current && `${calculateTime(currentTime)}`} </div>
-				<button onClick={handleMute} className='btn'>
-					{isMuted ? <MuteIcon /> : <VolumeIcon />}
-				</button>
-			</div>
-		</StyledAudioPlayer>
+			{audioRef && (
+				<Controls
+					handleMute={handleMute}
+					handlePlayPause={handlePlayPause}
+					audioRef={audioRef}
+					isMuted={isMuted}
+					isPlaying={isPlaying}
+					currentTime={currentTime}
+					currentPercentage={currentPercentage}
+					handleCurrentTime={setCurrentTime}
+				/>
+			)}
+		</>
 	);
 };
