@@ -15,8 +15,8 @@ export const StyledAside = styled.aside`
 		}
 	}
 	.link {
-		text-decoration: none;
 		color: var(--black);
+		text-decoration: none;
 	}
 	.image {
 		margin: 0 auto;
@@ -34,8 +34,8 @@ export const StyledAside = styled.aside`
 		padding: 1rem 0.25rem;
 	}
 	.line {
-		border: 1px solid var(--lightgrey);
 		width: 100%;
+		border: 1px solid var(--lightgrey);
 	}
 	.author,
 	.description-text {

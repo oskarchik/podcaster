@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { Controls } from '../Controls/Controls';
-import { useLoading } from '../../hooks/useLoading';
 
+import { Controls } from '../../components';
+
+import { useLoading } from '../../hooks/useLoading';
 
 export const AudioPlayer = ({ state }) => {
 	const audioRef = useRef();
@@ -11,7 +12,6 @@ export const AudioPlayer = ({ state }) => {
 	const [clickedTime, setClickedTime] = useState();
 	const [isPlaying, setIsPlaying] = useState(false);
 	const { setIsLoading } = useLoading();
-
 
 	const currentPercentage = (currentTime / duration) * 100;
 

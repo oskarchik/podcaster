@@ -4,11 +4,11 @@ export const StyledControls = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: #44433f;
 	gap: 8px;
-	color: white;
 	padding: 0.25rem 0;
 	border-radius: 4px;
+	color: white;
+	background-color: #44433f;
 	.progress {
 		width: 100%;
 		height: 8px;
@@ -18,10 +18,10 @@ export const StyledControls = styled.div`
 	.btn {
 		display: flex;
 		align-items: center;
-		border-radius: 4px;
 		border: none;
-		background-color: #44433f;
+		border-radius: 4px;
 		color: white;
+		background-color: #44433f;
 		cursor: pointer;
 	}
 `;
